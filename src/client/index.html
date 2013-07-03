@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="echojs" lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<title>EchoJS Desktop Reader</title>
+
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="stylesheet" href="third-party/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="third-party/purcecss/pure-min.css" />
+		<link rel="stylesheet" href="stylus/app.css" />
+
+		<script src="common/webfonts.js"></script>
+		<script src="third-party/angular/angular.min.js"></script>
+		<script src="third-party/moment/moment.min.js"></script>
+		<script src="common/ng-moment.js"></script>
+		<script src="app/app.js"></script>
+	</head>
+	<body>
+		<div class="echojs-app pure-g-r" ng-controller="ListCtrl">
+			<div class="echojs-sidebar pure-u">
+				<a class="echojs-menu-button" href="">Menu</a>
+				<div class="echojs-sidebar__inner">
+					<div class="echojs-logo" role="banner">
+						<i class="echojs-logo_text">EchoJS Desktop</i>
+					</div>
+					<button class="echojs-button--primary pure-button">
+						Submit
+					</button>
+					<div class="echojs-menu pure-menu pure-menu-open">
+						<ul>
+							<li class="echojs-menu--selected pure-menu-selected">
+								<a href="#/latest">Latest</a>
+							</li>
+							<li><a href="#/top">Top News</a></li>
+							<li><a href="#/archive">Archive</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="echojs-news pure-u">
+				<div class="echojs-news_item pure-g"
+					 ng-animate="'animate'"
+					 ng-click="list.select(item)"
+					 ng-repeat="item in list.items">
+					<div class="echojs-news_item_meta pure-u">
+						<span class="echojs-news_item_origin">
+							{{ item.origin }}
+						</span>
+						<h5 class="echojs-news_item_title" ng-bind-html-unsafe="item.title">
+						</h5>
+						<div class="echojs-news_item_details">
+							<ul class="echojs-list--inline">
+								<li>{{ item.date | fromNow}}</li>
+								<li>by <b>{{item.author}}</b></li>
+								<li>{{ item.votes.up }} up</li>
+								<li>{{item.votes.down}} down</li>
+								<li>
+									{{ item.comments }}
+									<ng-pluralize count="item.comments"
+									 when="{1: 'comment','other':'comments'}">
+									</ng-pluralize>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="echojs-browser pure-u" role="main" ng-show="list.current">
+				<div class="echojs-browser_content pure-g">
+					<div class="echojs-browser_header pure-g">
+						<div class="echojs-browser_info pure-u-1-2">
+							<h1 class="echojs-browser_title" ng-bind-html-unsafe="list.current.title">
+							</h1>
+							<p class="echojs-browser_subtitle">
+								Posted by <b>{{list.current.author}}</b>
+							</p>
+						</div>
+						<div class="echojs-browser_controls pure-u-1-2">
+							<button class="echojs-button--secondary pure-button">
+								<i class="icon-archive"></i>
+								Archive
+							</button>
+							<button class="echojs-button--secondary pure-button">
+								<i class="icon-check"></i>
+								Mark As Read
+							</button>
+							<button class="echojs-button--secondary pure-button">
+								<i class="icon-desktop"></i>
+								Open In Browser
+							</button>
+						</div>
+					</div>
+					<div class="echojs-browser_body">
+						<iframe class="echojs-webview" src="{{list.current.url}}"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

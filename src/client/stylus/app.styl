@@ -1,0 +1,192 @@
+html, body
+	height 100%
+
+html
+	font-size 100%
+
+body
+	background #FFF
+	color #222
+	font-family sans-serif
+	font-size 1em
+	line-height 1.5
+	margin 0
+	text-rendering geometricPrecision
+
+.wf-active body
+	font-family "Open Sans", sans-serif
+
+.echojs-logo, .echojs-menu-button
+	display none
+
+.echojs-button,
+.echojs-button--primary,
+.echojs-button--secondary
+	cursor default
+
+.echojs-button--primary
+	background #1B98F8
+	color #FFF
+
+.echojs-button--secondary
+	background #FFF
+	border 0.0625rem solid #D3D3D3
+	border-radius 0.1875rem
+	color #222
+	font-size 0.888875em
+	line-height 1.687526368
+
+.echojs-list,
+.echojs-list--inline
+	list-style none
+	margin 0
+	padding 0
+
+.echojs-list--inline,
+.echojs-list--inline li
+	display inline
+
+.echojs-list--inline li
+	&::after
+		content ", "
+
+	&:last-child::after
+		content none
+
+.echojs-app
+	padding-left 500px
+
+.echojs-news,
+.echojs-sidebar
+	bottom 0
+	overflow auto
+	position fixed
+	top 0
+
+.echojs-sidebar
+	background #252A3A
+	margin-left -500px
+	padding-bottom 1.5em
+	padding-top 1.5em
+	text-align center
+	width 150px
+
+.echojs-menu
+	background transparent !important
+	border 0 !important
+	margin-bottom 1.5em
+	margin-top 1.5em
+	text-align left
+
+.echojs-menu
+	li
+		margin-left 0.75em
+
+	a, .echojs-menu--selected a
+		color #FFF
+
+.echojs-menu a:focus,
+.echojs-menu a:hover,
+.echojs-menu--selected a
+	background #373C5A !important
+	border-bottom-left-radius 0.1875em
+	border-top-left-radius 0.1875em
+
+.echojs-menu--selected a
+	font-weight 600
+
+.echojs-news
+	background #F5F5F5 url(unquote("/assets/images/indicator-loading.gif")) no-repeat center
+	border-right 0.0625em solid #D3D3D3
+	margin-left -350px
+	width 350px
+
+.echojs-news_item
+	background #F5F5F5
+	border-top 0.0625em solid #FFF
+	border-bottom 0.0625em solid #D3D3D3
+	cursor default
+	padding-bottom 0.6875em
+	padding-left 0.75em
+	padding-right 0.75em
+	padding-top 0.6875em
+
+	&:first-child
+		border-top-color transparent
+
+	&.echojs-news_item--selected, &:hover
+		background #FAFAFF
+
+.echojs-news_item_origin
+	color #999
+	font-size 0.888875em
+	line-height 1.687526368
+	text-transform uppercase
+
+.echojs-news_item_title
+	font-size 1em
+	line-height 1.333
+	margin 0
+	margin-bottom 0.5em
+	font-weight 600
+
+.echojs-news_item_details
+	font-size 0.790125em
+	line-height 1.898433792
+
+.echojs-browser,
+.echojs-browser_content
+	height 100%
+	width 100%
+
+.echojs-browser_header
+	background #FFF
+	border-left 0.0625em solid #D3D3D3
+	border-bottom 0.0625em solid #D3D3D3
+	padding 3em
+	padding-bottom 1.4375em
+	position relative
+
+.echojs-browser_title
+	color #444
+	font-size 1.8984375em
+	font-weight 800
+	line-height 1.580246914
+	margin 0
+
+.echojs-browser_subtitle
+	color #999
+	font-size 0.888875em
+	line-height 1.687526368
+	margin 0
+
+.echojs-browser_controls
+	text-align right
+
+.echojs-browser_body
+	background #F5F5F5 url(unquote("/assets/images/indicator-loading.gif")) no-repeat center
+	height 100%
+
+.echojs-webview
+	border 0
+	height 87%
+	margin 0
+	overflow auto
+	padding 0
+	width 100%
+
+.animate-enter
+	opacity 0
+	transition 0.168s ease-out
+	transform translate(0, 0.375em)
+
+.animate-enter-active
+	opacity 1
+	transform translate(0, 0)
+
+.animate-leave
+	opacity 1
+	transition 0.3s ease-in
+
+.animate-leave-active
+	opacity 0
