@@ -3,22 +3,17 @@
 var echojs = require("./echojs");
 
 exports.setup = function setup(app, callback) {
-	app.get("/api/latest/:index?", function ctrlAPILatest(req, res, next) {
-		var index = parseInt(req.params.index, 10) || 0;
+	app.get("/api/:type/:start?", function ctrlAPILatest(req, res, next) {
+		var options = {};
+		var params = req.params;
 
-		echojs.getLatestNews(index, function onDone(err, response) {
+		options.count = 30;
+		options.type = params.type;
+		options.start = params.start || 0;
+
+		echojs.getNews(options, function(err, response) {
 			if (err) {
-				return next(err);
-			}
-
-			res.ok().json(response);
-		});
-	});
-
-	app.get("/api/top", function ctrlAPILatest(req, res, next) {
-		echojs.getTopNews(function onDone(err, response) {
-			if (err) {
-				return next(err);
+				throw err;
 			}
 
 			res.ok().json(response);

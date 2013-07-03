@@ -1,69 +1,56 @@
 'use strict';
 
-var $ = require("cheerio");
 var _ = require("lodash");
 var moment = require("moment");
 var request = require("request");
+var url = require("url");
 
-var host = "http://echojs.com/";
-var reTimestamp = /(\d)+\s(second|minute|hour|day|week|month|year)s?\s?/;
+var ENDPOINT = "http://echojs.com/api/";
 
-function parse(url, callback) {
-	return request(url, function onRequestCompleted(err, _res, body) {
-		var $news, response = [];
+function normalizeNewsItem(item) {
+	var type = /text\:\/\//.test(item.url) ? "text" : "link";
+
+	return {
+		author: item.username,
+		comments: parseInt(item.comments, 10),
+		id: item.id,
+		date: moment.unix(item.ctime),
+		origin: type === "link" ? url.parse(item.url).hostname : "EchoJS",
+		title: item.title,
+		type: type,
+		url: type === "link" ? item.url : "http://echojs.com/news/" + item.id,
+		votes: {
+			down: parseInt(item.down, 10),
+			up: parseInt(item.up, 10)
+		}
+	};
+}
+
+exports.getNews = function getNews(options, callback) {
+	var url = ENDPOINT + "getnews";
+
+	url += "/" + options.type;
+	url += "/" + (options.start || 0);
+	url += "/" + (options.count || 30);
+
+	return request.get(url, function(err, res, body) {
+		var news;
 
 		if (err) {
 			return callback(err);
 		}
 
-		$news = $("[data-news-id]", body);
-		$news.each(function iterator(index) {
-			var $item = $(this);
-			var $link = $item.find("h2 a");
-			var $meta = $item.find("p");
-			var origin = $item.find("address").text();
-			var url = $link.attr("href");
-			var date, timestamp;
+		try {
+			body = JSON.parse(body);
+		} catch (err) {
+			return callback(err);
+		}
 
-			if (url.charAt(0) === "/") {
-				url = host + url.substr(1);
-			}
+		if (body.status !== "ok") {
+			return callback(new Error(body.status));
+		}
 
-			timestamp = $meta.html().match(reTimestamp).slice(1);
-			date = moment().subtract(timestamp[1], parseInt(timestamp[0], 10));
-
-			response.push({
-				author: $meta.find("a[href*=user]").text(),
-				date: date.toDate(),
-				comments: parseInt($meta.find("a[href*=news]").text(), 10) || 0,
-				id: $item[0].attribs["data-news-id"],
-				origin: origin === "" ? "EchoJS" : origin.substr(3),
-				title: $link.text(),
-				url: url,
-				votes: {
-					down: parseInt($meta.find(".downvotes").text(), 10),
-					up: parseInt($meta.find(".upvotes").text(), 10)
-				}
-			});
-		});
-
-		callback(null, response);
+		news = _.map(body.news, normalizeNewsItem);
+		callback(null, news);
 	});
-};
-
-exports.getLatestNews = function getLatestNews(index, callback) {
-	var url = host + "latest/";
-
-	if (!callback && typeof index === "function") {
-		callback = index;
-		index = 0;
-	}
-
-	url += index;
-
-	return parse(url, callback);
-};
-
-exports.getTopNews = function getTopNews(callback) {
-	return parse(host, callback);
 };
