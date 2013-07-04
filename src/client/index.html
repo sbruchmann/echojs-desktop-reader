@@ -19,21 +19,12 @@
 	<body>
 		<div class="echojs-app pure-g-r" ng-controller="ListCtrl">
 			<div class="echojs-sidebar pure-u">
-				<a class="echojs-menu-button" href="">Menu</a>
 				<div class="echojs-sidebar__inner">
-					<div class="echojs-logo" role="banner">
-						<i class="echojs-logo_text">EchoJS Desktop</i>
-					</div>
-					<button class="echojs-button--primary pure-button">
-						Submit
-					</button>
 					<div class="echojs-menu pure-menu pure-menu-open">
 						<ul>
 							<li class="echojs-menu--selected pure-menu-selected">
 								<a href="#/latest">Latest</a>
 							</li>
-							<li><a href="#/top">Top News</a></li>
-							<li><a href="#/archive">Archive</a></li>
 						</ul>
 					</div>
 				</div>
@@ -75,20 +66,6 @@
 							<p class="echojs-browser_subtitle">
 								Posted by <b>{{list.current.author}}</b>
 							</p>
-						</div>
-						<div class="echojs-browser_controls pure-u-1-2">
-							<button class="echojs-button--secondary pure-button">
-								<i class="icon-archive"></i>
-								Archive
-							</button>
-							<button class="echojs-button--secondary pure-button">
-								<i class="icon-check"></i>
-								Mark As Read
-							</button>
-							<button class="echojs-button--secondary pure-button">
-								<i class="icon-desktop"></i>
-								Open In Browser
-							</button>
 						</div>
 					</div>
 					<div class="echojs-browser_body">
