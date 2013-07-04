@@ -14,7 +14,7 @@ function normalizeNewsItem(item) {
 		author: item.username,
 		comments: parseInt(item.comments, 10),
 		id: item.id,
-		date: moment.unix(item.ctime),
+		date: moment.unix(parseInt(item.ctime, 10)).toDate(),
 		origin: type === "link" ? url.parse(item.url).hostname : "EchoJS",
 		title: item.title,
 		type: type,
