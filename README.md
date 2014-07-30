@@ -1,9 +1,13 @@
 ---
 
-**Caution**: This project is unofficial and has not been authorized by
-[EchoJS](http://echojs.com).
+# DISCONTINUED
+
+This project is discontinued until further notice.
 
 ---
+
+**Caution**: This project is unofficial and has not been authorized by
+[EchoJS](http://echojs.com).
 
 # [EchoJS Desktop Reader](http://github.com/sbruchmann/echojs-desktop-reader)
 
