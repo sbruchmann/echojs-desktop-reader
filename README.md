@@ -7,9 +7,9 @@ This project is discontinued until further notice.
 ---
 
 **Caution**: This project is unofficial and has not been authorized by
-[EchoJS](http://echojs.com).
+[EchoJS](http://www.echojs.com/).
 
-# [EchoJS Desktop Reader](http://github.com/sbruchmann/echojs-desktop-reader)
+# [EchoJS Desktop Reader](https://github.com/sbruchmann/echojs-desktop-reader)
 
 Work in progress.
 
@@ -22,9 +22,9 @@ How to Run EchoJS Desktop Reader
 --------------------------------
 
   1. Download and install [Node.js](http://nodejs.org).
-     (Only needed for [NPM](http://npmjs.org)!)
+     (Only needed for [NPM](https://www.npmjs.com/)!)
   2. Download and install
-     [node-webkit](https://github.com/rogerwang/node-webkit) for your platform.
+     [node-webkit](https://github.com/nwjs/nw.js) for your platform.
   3. Clone this repository:
      ` $ git clone git://github.com/sbruchmann/echojs-desktop-reader.git`
   4. ` $ cd echojs-desktop-reader/`
