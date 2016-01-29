@@ -11,9 +11,7 @@ This project is discontinued until further notice.
 
 # [EchoJS Desktop Reader](https://github.com/sbruchmann/echojs-desktop-reader)
 
-Work in progress.
-
-Feel free to clone, fork, hack. Pull Requests are welcome.
+Feel free to clone, fork and hack.
 
 Watch it in action at [Youtube.com](https://www.youtube.com/watch?v=woHAH7mVSuU).
 ![Screenshot](screenshot-v0.1.0-pre-alpha.png)
